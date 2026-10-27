@@ -109,21 +109,25 @@ git clone https://github.com/andyhuo520/digital-human-koubo.git
 cd digital-human-koubo
 ```
 
-### 2 · 把两个 Skill 装进你的 Agent
+### 2 · 把这三个 Skill 装进你的 Agent
 
-仓库里有两个 Skill：`digital-human-koubo`（主 Skill）和 `finance-explainer`（风格 A「财经 / 科技解说」的引擎）。
+仓库里有三个 Skill：`digital-human-koubo`（主 Skill）、`minimax-video-prompt`
+（MiniMax H3 / 海螺AI 提示词写法）和 `finance-explainer`（风格 A「财经 / 科技解说」的引擎）。
+`minimax-video-prompt` 可单独用——不装它，主 Skill 走 H3 时就没有那 6 条铁律。
 
 **Claude Code**
 ```bash
-mkdir -p ~/.claude/skills && cp -R skills/digital-human-koubo skills/finance-explainer ~/.claude/skills/
+mkdir -p ~/.claude/skills
+cp -R skills/digital-human-koubo skills/minimax-video-prompt skills/finance-explainer ~/.claude/skills/
 ```
 **Codex**
 ```bash
-mkdir -p ~/.codex/skills && cp -R skills/digital-human-koubo skills/finance-explainer ~/.codex/skills/
+mkdir -p ~/.codex/skills
+cp -R skills/digital-human-koubo skills/minimax-video-prompt skills/finance-explainer ~/.codex/skills/
 ```
-**WorkBuddy / OpenClaw / 其他 Agent**：把两个文件夹打成压缩包，在产品的「技能」页面导入，或者复制进它的技能目录（以产品文档为准）：
+**WorkBuddy / OpenClaw / 其他 Agent**：把三个文件夹打成压缩包，在产品的「技能」页面导入，或者复制进它的技能目录（以产品文档为准）：
 ```bash
-cd skills && zip -r ../digital-human-skills.zip digital-human-koubo finance-explainer && cd ..
+cd skills && zip -r ../digital-human-skills.zip digital-human-koubo minimax-video-prompt finance-explainer && cd ..
 ```
 
 ### 3 · 接入 Renoise MCP（AI 视频 / 图片生成）
@@ -338,6 +342,9 @@ skills/
       packaging/                  48 个组件 + 图鉴工程
       reference/                  launch-169 · tutorial-169 · multihost-169
     assets/                       风格预览图 · 包装图鉴 · 数字人参考图
+  minimax-video-prompt/           MiniMax H3 / 海螺AI 提示词：6 条铁律 · 核心公式 · 风格库
+                                  短剧对白流 · 长视频 [Chunk N] 形态
+    references/                   官方规范 · Continuum 长视频 · 备案案例
   finance-explainer/              风格 A 引擎（episode.json 拍表、检索工具）
 docs/                             README 用的图片、GIF 预览、封面帧
 ```

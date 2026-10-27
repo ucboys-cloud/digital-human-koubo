@@ -15,6 +15,8 @@
 | `write-continuum-h3-prompts` (skill) | `skills/digital-human-koubo/references/official-continuum-skill/` | MIT, © 2026 ukr8b3g-cmyk | Upstream prompt discipline for H3 Continuum, copied verbatim from `H3-Continuum-Skill-v1.zip` shipped with the plugin so the playbook can cite it. License text kept alongside. |
 | [rgthree-comfy](https://github.com/rgthree/rgthree-comfy) | installed by you | MIT | `Power Lora Loader` used by the bundled workflow. |
 | MiniMax H3 weights & LoRAs | installed by you | see upstream | **No model weights are bundled or redistributed.** You install them yourself and are responsible for their license terms. |
+| MiniMax H3 documentation | `skills/minimax-video-prompt/references/h3-official-prompt-spec.md` | MiniMax H3 Community License Agreement — © MiniMax (Nanonoble Pte. Ltd.) | Condensed rewrite of MiniMax's public prompt guides (`huggingface.co/MiniMaxAI/MiniMax-H3/docs`, `platform.minimaxi.com/docs/guides/video-prompt`), not a verbatim copy — structure and naming follow the original. That license: excludes the EU, UK, South Korea and USA; needs separate written permission above US$20 M yearly revenue; forbids using the works or their outputs to improve other models. **Read it before commercial use.** |
+| MiniMax H3 official skills | `skills/minimax-video-prompt/references/official-skills-absorption.md` | same as above | Distilled from 2 of the 9 skills in the upstream `skills/` directory (project-management tables, product-ad lessons). Rewritten, not copied. |
 
 Services you connect with your own account / 需要你自己账号的服务:
 - [Renoise](https://renoise.ai/mcp?utm_medium=xcom&utm_source=official) — image & video generation (Grok Video, Wan, GPT Image, Seedance, …) through MCP. Usage is billed to your Renoise credits.

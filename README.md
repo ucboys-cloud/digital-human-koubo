@@ -109,21 +109,26 @@ git clone https://github.com/andyhuo520/digital-human-koubo.git
 cd digital-human-koubo
 ```
 
-### 2 · Install the two skills into your agent
+### 2 · Install the three skills into your agent
 
-The repo contains two skills: `digital-human-koubo` (main) and `finance-explainer` (the engine for Style A, the finance / tech explainer).
+The repo contains three skills: `digital-human-koubo` (main), `minimax-video-prompt`
+(prompt writing for MiniMax H3 / 海螺AI) and `finance-explainer` (the engine for Style A,
+the finance / tech explainer). `minimax-video-prompt` stands on its own — without it the
+main skill has none of the 6 hard rules when it drives H3.
 
 **Claude Code**
 ```bash
-mkdir -p ~/.claude/skills && cp -R skills/digital-human-koubo skills/finance-explainer ~/.claude/skills/
+mkdir -p ~/.claude/skills
+cp -R skills/digital-human-koubo skills/minimax-video-prompt skills/finance-explainer ~/.claude/skills/
 ```
 **Codex**
 ```bash
-mkdir -p ~/.codex/skills && cp -R skills/digital-human-koubo skills/finance-explainer ~/.codex/skills/
+mkdir -p ~/.codex/skills
+cp -R skills/digital-human-koubo skills/minimax-video-prompt skills/finance-explainer ~/.codex/skills/
 ```
-**WorkBuddy / OpenClaw / other agents** — zip the two folders and import them in the product's *Skills* page, or copy them into its skills directory (see the product's docs):
+**WorkBuddy / OpenClaw / other agents** — zip the three folders and import them in the product's *Skills* page, or copy them into its skills directory (see the product's docs):
 ```bash
-cd skills && zip -r ../digital-human-skills.zip digital-human-koubo finance-explainer && cd ..
+cd skills && zip -r ../digital-human-skills.zip digital-human-koubo minimax-video-prompt finance-explainer && cd ..
 ```
 
 ### 3 · Connect Renoise MCP (AI video / image generation)
@@ -339,6 +344,9 @@ skills/
       reference/                  launch-169 · tutorial-169 · multihost-169
     assets/                       style previews · packaging gallery · avatar reference
   finance-explainer/              Style A engine (episode.json beat sheet, research helpers)
+  minimax-video-prompt/           MiniMax H3 / 海螺AI prompt writing: 6 hard rules, formula,
+                                  style library, shorts dialogue flow, long-form [Chunk N] form
+                                  references/   official spec · Continuum long form · cases
 docs/                             README images, GIF previews, posters
 ```
 
