@@ -52,6 +52,7 @@ Click a GIF (or "Watch") to play the full video. Every demo below was produced w
 - **Digital human from one photo** — a fixed presenter (face, outfit, voice description, prompt template) stored in `persona.json`, so every video is the same person. Composite her into any scene (livestream studio, shop, classroom, Kyoto street) with GPT Image first, then make her talk.
 - **Lip-synced talking clips** — the script is split into ≤ 15-second segments and generated with **Grok Video 1.5** through **[Renoise MCP](https://renoise.ai/mcp?utm_medium=xcom&utm_source=official)**. Other models (Wan 3.0, OmniHuman for your own recording) are documented.
 - **Cost gate** — the agent always quotes *segments · seconds · credits · balance* first and waits for your "yes". It generates segment 1 for you to check before batching the rest.
+- **Two generation backends** — cloud (**Grok Video 1.5** via Renoise MCP, quoted before every run) or **local ComfyUI + MiniMax H3 Continuum** (free, offline, long takes: chunked continuation with chunk/duration/size set on the sampler node, plus optional audio-driven lip-sync from your own TTS). Local playbook: `references/local-h3-continuum.md`.
 - **Quality control** — every segment is transcribed with whisper and compared with the script, and 4 frames per segment are inspected (Grok sometimes burns subtitles into the picture; those segments get re-shot).
 - **Voice unification** — 1/3-octave spectral matching, de-essing, one shared small-room reverb and loudness normalisation, so 30 separately-generated clips sound like one recording (sibilance spread 13.2 dB → 5.9 dB in our tests).
 - **5 editing styles, chosen for your content** — the agent diagnoses your content, recommends 2 styles with preview images and asks you everything in one go (style · ratio & length · caption intensity · presenter).
@@ -181,6 +182,31 @@ The default voice is Grok's native voice (best lip-sync). For a designed voice, 
 
 > Note: Grok generates lip movement from its own voice. Swapping in a different voice afterwards leaves ~100 ms lip offset (fine in picture-in-picture, visible in full-screen close-ups). For your own recording with exact lip-sync, use an audio-driven model such as OmniHuman (documented in the skill).
 
+### 7 · (Optional) Local backend — ComfyUI + MiniMax H3 Continuum
+
+Skip this if you only use Renoise. It costs nothing, never leaves your machine, and suits long single-take talking heads.
+
+1. ComfyUI running locally, with `comfyui-h3-continuum` and `rgthree-comfy` installed, plus the MiniMax H3 video/audio VAE, text encoder and the LoRA set you actually use. **You supply the weights** — none are bundled here.
+2. Point the scripts at your install (only these change per machine):
+
+```bat
+set COMFY_URL=http://127.0.0.1:8188
+set COMFY_INPUT=D:\ComfyUI_windows_portable\ComfyUI\input
+set FFMPEG_DIR=D:\ffmpeg\bin
+set WHISPER_DIR=D:\whisper.cpp
+set WHISPER_MODEL=D:\models\ggml-medium-q5_0.bin
+```
+
+3. Export your Continuum workflow once with **Save (API Format)** → `scripts/local-h3/continuum_base.json`. Never hand-convert the UI JSON: the rgthree Power Lora Loader keeps its LoRAs in dynamic inputs, and a UI→API converter silently drops all of them (the model then runs bare and every clip looks soft).
+4. One shot end to end:
+
+```bash
+python pipeline.py --script 剧本.txt --image 形象图.png --prompt-template prompts/tpl.txt \
+  --reference "<参考音频>/某女声.mp3" --auto-prompt --target 30 --out out/final.mp4
+```
+
+Details, measured numbers and 14 traps: `references/local-h3-continuum.md`.
+
 ---
 
 ## Quick start
@@ -302,6 +328,11 @@ skills/
     references/                   style menu · packaging · playbook · install · research reports
     scripts/                      build_tasks · rangedl · assemble · align · check_edit · cutout_video
                                   voicefx/unify · doctor · new_edit · make_assets
+    scripts/local-h3/             local backend: h3c_run (submit/collect) · pipeline (one-shot)
+                                  tts (VoxCPM2 clone) · w2api (UI→API) · srtsplit · sharpness
+                                  vram_free · refs_index · continuum_base.json
+    references/local-h3-continuum.md      local ComfyUI H3 backend playbook
+    references/official-continuum-skill/  upstream H3 Continuum prompt rules (MIT, bundled)
     templates/
       huazi-916/                  9:16 data-driven talking-head template (edit.json)
       packaging/                  48-component kit + gallery project
@@ -318,6 +349,9 @@ docs/                             README images, GIF previews, posters
 - Renoise's US CDN can truncate parallel downloads → `rangedl.py` downloads in 6 ranges with resume + decode check.
 - Grok 9:16 720p is **720×1280** — never stretch it to another ratio.
 - Expo easing never quite reaches the target (99.9 → rounds to 100) → counters snap to the exact value at the end.
+- *(local backend)* A UI→API converted workflow **silently drops every LoRA** on `Power Lora Loader (rgthree)` → bare model + few steps = soft, mushy frames. Always use the official API export.
+- *(local backend)* Continuum drifts on long takes (known issue): exposure climbs ~+0.05–0.07 per chunk boundary and fine detail decays. Keep the shared preamble short (no stacked "sharp / pores / high contrast" adjectives — it makes drift worse), or generate each chunk independently and cut between them.
+- *(local backend)* Decode cache is written to `%TEMP%` (~8 GB per run, kept while ComfyUI lives) → point the plugin's *Temporary Storage* setting at a big disk, and cap `disk_budget_gb`.
 - Always mute the presenter video track; doubled audio a few ms apart sounds harsh (comb filtering).
 
 ## Responsible use

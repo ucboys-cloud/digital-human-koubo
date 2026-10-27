@@ -1,0 +1,510 @@
+{
+  "135": {
+    "inputs": {
+      "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Video VAE",
+      "cnr_id": "comfy-core",
+      "ver": "0.30.0"
+    }
+  },
+  "136": {
+    "inputs": {
+      "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Audio VAE",
+      "cnr_id": "comfy-core",
+      "ver": "0.30.0"
+    }
+  },
+  "139": {
+    "inputs": {
+      "sampler_name": "euler"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "Sampler",
+      "cnr_id": "comfy-core",
+      "ver": "0.30.0"
+    }
+  },
+  "142": {
+    "inputs": {
+      "clip_name": "qwen3vl_32b_minimax_h3_int8_convrot.safetensors",
+      "type": "minimax",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "MiniMax H3 Text Encoder",
+      "cnr_id": "comfy-core",
+      "ver": "0.30.0"
+    }
+  },
+  "147": {
+    "inputs": {
+      "unet_name": "Minimax-h3_Singularity_x_10Eros-Max_PRISM_int8.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "H3 Model",
+      "cnr_id": "comfy-core",
+      "ver": "0.30.0"
+    }
+  },
+  "153": {
+    "inputs": {
+      "scheduler": "simple",
+      "steps": 5,
+      "denoise": 1,
+      "model": [
+        "365",
+        0
+      ]
+    },
+    "class_type": "BasicScheduler",
+    "_meta": {
+      "title": "Scheduler",
+      "cnr_id": "comfy-core",
+      "ver": "0.30.0"
+    }
+  },
+  "188": {
+    "inputs": {
+      "value": "3D 动画电影质感，电影级构图，暖金黄昏的柔和漫射光，皮肤带柔和次表面散射，布料与皮革有细腻纹理，自然材质反光，细腻胶片颗粒，浅景深，运动平滑，面部特征稳定，人物与服装在全程保持一致，无油污感皮肤，无油画笔触，无厚涂效果，自然调色，中等对比度\n\n[Chunk 1]\nFor the target video, at 0.00 seconds into the target video, <Picture 1> (from [Shot 1]) is fully referenced.\nintegrated_multimodal_description: [Shot 1] 3D 动画电影质感，国风集市长街的黄昏，柔和漫射光，自然色，细腻胶片颗粒，浅景深。中景，街道中段。<Subject 1> 男孩从画面左侧快步入画，十岁上下，瘦小，棕黑碎发在头顶束成一髻，穿赭黄色兜帽披风、白色交领长衣、深棕皮革腰带配金色纹饰、深色束脚长裤和棕色皮靴，脸型、发型与服装取 <Picture 2> 与 <Picture 3>；他右手提着一只巴掌大的圆形纸灯笼，竹骨、糊纸，纸面还是白的，明显还没点过。街尾一处灯笼摊前，<Subject 3> 摊主扛着一杆红灯笼站在那里，五十来岁，圆脸、颔下一撮短须，挽着袖子，穿灰布短褂、系一条靛蓝围裙，正用一只铜盏扣灭杆上的灯。男孩跑到摊前，右手向前伸出，仰起脸急急地喊，清亮的少年男声（S1）：「老板，借个火！」摊主头也不抬，低沉的中年男声（S3）：「收摊了，明儿赶早。」男孩的手还伸着，他闭上嘴。镜头完全固定。[Shot 2] At 00:03.500, the shot cuts to 近景，<Subject 3> 摊主的上半身。他五十来岁，圆脸、颔下一撮短须，挽着袖子，穿灰布短褂、系一条靛蓝围裙；他把铜盏按在杆上最后一盏红灯上，「噗」的一声，最后一点火灭了，一缕细烟从灯罩缝里升起来；他把长杆往肩上一扛，转身要走，低沉的中年男声（S3）：「今儿最后一盏，谁也不给。」他闭上嘴。镜头完全固定。[Shot 3] At 00:07.000, the shot cuts to 中景，男孩。他的手停在半空，然后慢慢收回来，两手把纸灯笼抱在胸前，肩膀落下去。他身后整条街的灯笼全灭了，只剩青石板上的湿光；他身后的巷口处，有一点很小的、泛蓝的火光，正往巷子深处去，他没有回头。男孩垂下眼睛，低声，清亮的少年男声（S1）：「……哦。」他闭上嘴。镜头完全固定。\noverall_soundscape:\n人群收摊的脚步声与木器碰撞声迅速退向街尾；铜盏扣灭灯芯时一声接一声的「噗」；男孩跑近后又突然收住的急促呼吸；最后只剩风穿过空街的声响。\nnon_diegetic_music:\n一支竹笛在中低音区缓慢吹出三个音，音与音之间留得宽松，底下垫一层极轻的持续低音，音量压得很低，不盖人声。\n\n[Chunk 2]\nintegrated_multimodal_description: Continuation of Chunk 1. [Shot 1] 3D 动画电影质感，国风窄巷的黄昏，光线比上一段暗一档，柔和漫射光，细腻胶片颗粒，浅景深。中景，巷底石阶。<Subject 1> 男孩两手抱着纸灯笼走进街尾右侧的窄巷，十岁上下，瘦小，棕黑碎发在头顶束成一髻，穿赭黄色兜帽披风、白色交领长衣、深棕皮革腰带配金色纹饰、深色束脚长裤和棕色皮靴，脸型、发型与服装取 <Picture 2>；他脚步慢下来，从跑变成走，在石阶中段坐下来，把纸灯笼并膝放在身边的石面上，右手食指伸进灯笼底部的开口碰了碰灯芯，又摸出自己空空的袖口。巷子两侧是高墙与伸出的木檐，墙脚的落叶被风贴着地朝巷子深处推。脚步声很轻，<Subject 2> 女孩从石阶上方走下来，在他下一级台阶坐下，中间隔着一级石阶；女孩十岁上下，瘦小，双丫髻簪金色花饰、垂珍珠耳坠，穿奶油色宽袖层叠长裙、橙红腰带与橙红长飘带、奶油色绣鞋，脸型、发型与服装取 <Picture 4> 与 <Picture 3>；她右手提着一只旧的小纸灯笼，比男孩那只小一半，糊纸打过补丁，罩里一枝火苗只有指甲大，焰心发白、边缘泛蓝，被巷风吹得一直往一边倒。女孩看着他，平静的少年女声（S2）：「等你半天了。」男孩垂着眼睛，清亮的少年男声（S1）：「没借到。」镜头完全固定。[Shot 2] At 00:03.500, the shot cuts to 中近景，两人同框。女孩看看男孩膝前那盏大纸灯笼，又看看自己手里快要灭的小灯，然后把手里的灯轻轻抬起来，举到两人中间。平静的少年女声（S2）：「我认得路。」男孩没有动。镜头完全固定。[Shot 3] At 00:06.500, the shot cuts to 近景，<Subject 2> 女孩。她十岁上下，瘦小，双丫髻簪金色花饰、垂珍珠耳坠，穿奶油色宽袖层叠长裙、橙红腰带与橙红长飘带，脸型、发型与服装取 <Picture 4> 与 <Picture 3>；她伸手碰了碰男孩膝前那盏大灯笼的灯芯，又收回手，两只手压在膝头，看着那盏还白着的纸。平静的少年女声（S2）：「你这盏，比我的亮。」她闭上嘴。镜头完全固定。\noverall_soundscape:\n风在窄巷里被两侧高墙挤得收窄变尖，一直朝巷底灌；男孩袖口摸空时布料摩擦的一声轻响；女孩走下石阶时绣鞋踩在石面上的两三声轻步。\nnon_diegetic_music:\n竹笛放慢到只剩两个音，低音持续保持在同一个音高上，音量比上一段更轻。\n\n[Chunk 3]\nintegrated_multimodal_description: Continuation of Chunk 2. [Shot 1] 3D 动画电影质感，国风院落天井的入夜，光线已近全暗，柔和漫射光，细腻胶片颗粒，浅景深。特写，两只灯笼。<Subject 2> 女孩十岁上下，瘦小，双丫髻簪金色花饰、垂珍珠耳坠，穿奶油色宽袖层叠长裙、橙红腰带与橙红长飘带、奶油色绣鞋，脸型、发型与服装取 <Picture 4> 与 <Picture 3>；她把手里的旧小纸灯笼往 <Subject 1> 男孩膝前倾过去，男孩十岁上下，瘦小，棕黑碎发在头顶束成一髻，穿赭黄色兜帽披风、白色交领长衣、深棕皮革腰带配金色纹饰、深色束脚长裤和棕色皮靴，脸型、发型与服装取 <Picture 2>。灯罩里最后一点蜡油顺着罩沿滑到灯芯，火苗「腾」地立起来一点；她把那一豆火送进男孩大灯笼底部的开口，点上灯芯。男孩的灯芯先抖了一下，接着「噗」地吸住火，一团暖黄从纸灯笼里胀开来，把石阶、两张脸、旁边的落叶全照亮；她手里那盏小纸灯笼在同一刻灭了，只余一缕细烟。女孩把灭了的小灯并膝放在石面上，两只手压在膝头，平静的少年女声（S2）：「喏。」男孩看着那团光，清亮的少年男声（S1）：「……你的灭了。」镜头完全固定。[Shot 2] At 00:04.000, the shot cuts to 中近景，<Subject 1> 男孩。他十岁上下，瘦小，棕黑碎发在头顶束成一髻，穿赭黄色兜帽披风、白色交领长衣、深棕皮革腰带配金色纹饰、深色束脚长裤和棕色皮靴，脸型、发型与服装取 <Picture 2>；他双手抱起那盏亮着的大纸灯笼，先低头看灯，再抬头看她——暖黄的光正落在她脸上，把她的丫髻、金色花饰、珍珠耳坠与飘带一样一样照清楚。<Subject 2> 女孩十岁上下，瘦小，双丫髻簪金色花饰、垂珍珠耳坠，穿奶油色宽袖层叠长裙、橙红腰带与橙红长飘带、奶油色绣鞋，脸型、发型与服装取 <Picture 4> 与 <Picture 3>；她站起来，往石阶顶端走了三四步，停下，转过身来面向他，平静的少年女声（S2）：「走啦。」镜头完全固定。[Shot 3] At 00:07.000, the shot cuts to 全景，院落天井，按 <Picture 5> 的空间：三面木构回廊、朱红木柱、方格木窗、檐下竹帘、墙角几盆绿植、右侧一口圆形石水缸，缸沿上落着枯叶；屋檐把最后一道夕阳切成一道斜铺在青石板上的长条光带，<Picture 5> 里两人身上的服装不作为参考，服装以 <Picture 2> 与 <Picture 4> 为准。女孩转身朝石阶下方、朝那条她认得的路走下去；男孩提着灯跟上，灯光把她的背影托在前面。男孩在身后喊，清亮的少年男声（S1）：「等我一下！」女孩头也不回，平静的少年女声（S2）：「你有灯了。」她闭上嘴。整个天井暗着，只有这一盏灯在走。镜头完全固定。\noverall_soundscape:\n灯芯吸住火时「噗」的一声轻响；小纸灯笼灭时一缕烟散开的极轻气息；最后只剩两人的脚步一前一后落在石阶上，越来越轻。\nnon_diegetic_music:\n竹笛回到开头那三个音，最后一个音正好落在灯芯亮起的一刻，随后收掉，只留余音。"
+    },
+    "class_type": "PrimitiveStringMultiline",
+    "_meta": {
+      "title": "字符串（多行）",
+      "cnr_id": "comfy-core",
+      "ver": "0.31.0"
+    }
+  },
+  "191": {
+    "inputs": {
+      "filename_prefix": "video/MiniMax_H3_Continuum_V39_Turbo_Sample",
+      "format": "auto",
+      "format.codec": "auto",
+      "codec": "auto",
+      "video": [
+        "228",
+        0
+      ]
+    },
+    "class_type": "SaveVideo",
+    "_meta": {
+      "title": "Save V3.9 Video",
+      "cnr_id": "comfy-core",
+      "ver": "0.30.0"
+    }
+  },
+  "228": {
+    "inputs": {
+      "fps": 24,
+      "bit_depth": 8,
+      "color_space": "sRGB",
+      "codec": "none",
+      "images": [
+        "306",
+        0
+      ],
+      "audio": [
+        "306",
+        1
+      ]
+    },
+    "class_type": "CreateVideo",
+    "_meta": {
+      "title": "创建视频",
+      "cnr_id": "comfy-core",
+      "ver": "0.31.0"
+    }
+  },
+  "240": {
+    "inputs": {
+      "model": [
+        "361",
+        0
+      ]
+    },
+    "class_type": "MiniMaxH3MemoryEfficientSageAttentionPatch",
+    "_meta": {
+      "title": "MiniMax H3 Mem Eff Sage Attention Patch",
+      "cnr_id": "comfyui-kjnodes",
+      "ver": "1.5.0"
+    }
+  },
+  "249": {
+    "inputs": {
+      "source": [
+        "312",
+        3
+      ]
+    },
+    "class_type": "PreviewAny",
+    "_meta": {
+      "title": "预览任意",
+      "cnr_id": "comfy-core",
+      "ver": "0.32.0"
+    }
+  },
+  "306": {
+    "inputs": {
+      "exact_total_duration": true,
+      "audio_seam": "Auto",
+      "video_seam": "Auto",
+      "buffer_backend": "Auto",
+      "diagnostics": "Basic",
+      "images": [
+        "344",
+        0
+      ],
+      "audio": [
+        "344",
+        1
+      ],
+      "assembly_plan": [
+        "312",
+        2
+      ],
+      "driving_audio": [
+        "312",
+        4
+      ]
+    },
+    "class_type": "H3ContinuumAssembleSeamV35",
+    "_meta": {
+      "title": "H3 Continuum Finalize",
+      "cnr_id": "comfyui-h3-continuum",
+      "aux_id": "ukr8b3g-cmyk/ComfyUI-H3-Continuum",
+      "ver": "ddaedfd401b171651b48059285a44897e84fce70"
+    }
+  },
+  "312": {
+    "inputs": {
+      "prompt_mode": "Auto",
+      "chunks": 3,
+      "chunk_seconds": 8,
+      "aspect": "Auto from First Image",
+      "preset": "Draft — 0.30 MP",
+      "custom_mp": 0.3,
+      "continuity": "Balanced — 22 frames",
+      "base_seed": 780871476133897,
+      "audio_continuity": true,
+      "diagnostics": "Basic",
+      "reroll_from_chunk": "Auto",
+      "reroll_nonce": 0,
+      "strict_compatibility": false,
+      "debug": false,
+      "show_preview": true,
+      "run_storage": "Off",
+      "run_name": "",
+      "reference_size": "Match Output",
+      "project_id": "afea229c-ae20-49a7-9fba-80236522fdb1",
+      "video_reference_size": "Efficient - 0.4 MP",
+      "continuation_backend": "Standard",
+      "generation_mode": "Full Run",
+      "review_action": "Continue / Next",
+      "take_group": 0,
+      "take_revision_id": "",
+      "take_action": "Automatic",
+      "size_source": "Manual",
+      "width": 1248,
+      "height": 832,
+      "video_reference_mode": "Repeat Reference",
+      "model": [
+        "365",
+        0
+      ],
+      "clip": [
+        "142",
+        0
+      ],
+      "video_vae": [
+        "135",
+        0
+      ],
+      "sampler": [
+        "139",
+        0
+      ],
+      "sigmas": [
+        "153",
+        0
+      ],
+      "sequence_prompt": [
+        "188",
+        0
+      ],
+      "audio_vae": [
+        "136",
+        0
+      ],
+      "audio_references": [
+        "331",
+        0
+      ],
+      "reference_images": [
+        "348",
+        0
+      ]
+    },
+    "class_type": "H3ContinuumSamplerV39",
+    "_meta": {
+      "title": "H3 Continuum Sampler V3.9",
+      "cnr_id": "comfyui-h3-continuum",
+      "aux_id": "ukr8b3g-cmyk/ComfyUI-H3-Continuum",
+      "ver": "ddaedfd401b171651b48059285a44897e84fce70"
+    }
+  },
+  "313": {
+    "inputs": {
+      "image": "P4_girl_sheet.jpg"
+    },
+    "class_type": "H3EasyLoadImage",
+    "_meta": {
+      "title": "H3 Continuum Load Image",
+      "cnr_id": "comfyui-h3-continuum",
+      "aux_id": "ukr8b3g-cmyk/ComfyUI-H3-Continuum",
+      "ver": "ddaedfd401b171651b48059285a44897e84fce70"
+    }
+  },
+  "314": {
+    "inputs": {
+      "image": "P3_pair.jpg"
+    },
+    "class_type": "H3EasyLoadImage",
+    "_meta": {
+      "title": "H3 Continuum Load Image",
+      "cnr_id": "comfyui-h3-continuum",
+      "aux_id": "ukr8b3g-cmyk/ComfyUI-H3-Continuum",
+      "ver": "ddaedfd401b171651b48059285a44897e84fce70"
+    }
+  },
+  "316": {
+    "inputs": {
+      "image": "Code_Generated_Image.jfif"
+    },
+    "class_type": "H3EasyLoadImage",
+    "_meta": {
+      "title": "H3 Continuum Load Image",
+      "cnr_id": "comfyui-h3-continuum",
+      "aux_id": "ukr8b3g-cmyk/ComfyUI-H3-Continuum",
+      "ver": "ddaedfd401b171651b48059285a44897e84fce70"
+    }
+  },
+  "331": {
+    "inputs": {
+      "reference_audio_vae": [
+        "136",
+        0
+      ]
+    },
+    "class_type": "H3ContinuumReferenceAudios",
+    "_meta": {
+      "title": "H3 Continuum Reference Audios",
+      "cnr_id": "comfyui-h3-continuum",
+      "aux_id": "ukr8b3g-cmyk/ComfyUI-H3-Continuum",
+      "ver": "ddaedfd401b171651b48059285a44897e84fce70"
+    }
+  },
+  "344": {
+    "inputs": {
+      "cache_mode": "Auto",
+      "ram_budget_mb": 256,
+      "disk_budget_gb": 8,
+      "reset_token": 0,
+      "video_samples": [
+        "312",
+        0
+      ],
+      "video_vae": [
+        "135",
+        0
+      ],
+      "audio_samples": [
+        "312",
+        1
+      ],
+      "audio_vae": [
+        "136",
+        0
+      ]
+    },
+    "class_type": "H3DecodeCacheHelper",
+    "_meta": {
+      "title": "Decode Cache Helper",
+      "cnr_id": "comfyui-h3-continuum",
+      "aux_id": "ukr8b3g-cmyk/ComfyUI-H3-Continuum",
+      "ver": "0fc2c5eff38d8f66e58f53b749563b7d98d477f6"
+    }
+  },
+  "348": {
+    "inputs": {
+      "reference_use": "All chunks",
+      "reference_r1_chunks": "1,2,3",
+      "reference_r2_chunks": "off",
+      "reference_r3_chunks": "off",
+      "reference_r4_chunks": "off",
+      "reference_r5_chunks": "off",
+      "reference_r6_chunks": "off",
+      "reference_r7_chunks": "off",
+      "reference_r8_chunks": "off",
+      "reference_r9_chunks": "off",
+      "reference_image_1": [
+        "316",
+        0
+      ],
+      "reference_image_2": [
+        "314",
+        0
+      ],
+      "reference_image_3": [
+        "313",
+        0
+      ]
+    },
+    "class_type": "H3ContinuumReferenceImagesV39",
+    "_meta": {
+      "title": "H3 Continuum Reference Images V3.9",
+      "cnr_id": "comfyui-h3-continuum",
+      "aux_id": "ukr8b3g-cmyk/ComfyUI-H3-Continuum",
+      "ver": "085943ad9cb8023a2042d4d731c83e638361c06e"
+    }
+  },
+  "361": {
+    "inputs": {
+      "max_resolution": 1024,
+      "jpeg_quality": 80,
+      "suppress_default_preview": true,
+      "preview_frames": 1,
+      "preview_fps": 12,
+      "tiny_vae": "none",
+      "model": [
+        "147",
+        0
+      ],
+      "vae": [
+        "135",
+        0
+      ],
+      "audio_vae": [
+        "136",
+        0
+      ]
+    },
+    "class_type": "ModelPreviewOverrideKJ",
+    "_meta": {
+      "title": "Model Preview Override",
+      "cnr_id": "comfyui-kjnodes",
+      "ver": "1.5.2"
+    }
+  },
+  "362": {
+    "inputs": {
+      "PowerLoraLoaderHeaderWidget": {
+        "type": "PowerLoraLoaderHeaderWidget"
+      },
+      "lora_1": {
+        "on": true,
+        "lora": "minimax\\Motion_Repair_V2.safetensors",
+        "strength": 0.3
+      },
+      "lora_2": {
+        "on": true,
+        "lora": "minimax\\wushu_spatial_physics_clean_3000_pruned.safetensors",
+        "strength": 0.3
+      },
+      "lora_3": {
+        "on": true,
+        "lora": "minimax\\H3_Combat_V2.safetensors",
+        "strength": 0.5
+      },
+      "lora_4": {
+        "on": true,
+        "lora": "minimax\\minimax_h3_dmad_full_dareties_v4_step600_comfy_fro.safetensors",
+        "strength": 0.8
+      },
+      "lora_5": {
+        "on": true,
+        "lora": "minimax\\Minimax-h3_Singularity_64-fro95_lora.safetensors",
+        "strength": 0.3
+      },
+      "lora_6": {
+        "on": true,
+        "lora": "minimax\\H3_Motion_BoosterV2.safetensors",
+        "strength": 0.5
+      },
+      "➕ Add Lora": "",
+      "model": [
+        "240",
+        0
+      ]
+    },
+    "class_type": "Power Lora Loader (rgthree)",
+    "_meta": {
+      "title": "Power Lora Loader (rgthree)",
+      "cnr_id": "rgthree-comfy",
+      "ver": "d7297b42f0fa78bec1c0411478f887423c249502"
+    }
+  },
+  "363": {
+    "inputs": {
+      "attention": "comfy kitchen attention",
+      "model": [
+        "362",
+        0
+      ]
+    },
+    "class_type": "ModelAttentionBackend",
+    "_meta": {
+      "title": "模型注意力后端",
+      "cnr_id": "comfy-core",
+      "ver": "0.41.0"
+    }
+  },
+  "364": {
+    "inputs": {
+      "selection": "sol-attn",
+      "selection.tau": 1.3,
+      "start_percent": 0.2,
+      "end_percent": 1,
+      "dense_blocks": "",
+      "min_tokens": 12288,
+      "extra_tokens": 256,
+      "sink_conditioning": "exact_kv_and_rows",
+      "verbose": true,
+      "model": [
+        "363",
+        0
+      ]
+    },
+    "class_type": "BlockSparseAttention",
+    "_meta": {
+      "title": "模型稀疏注意力",
+      "cnr_id": "comfy-core",
+      "ver": "0.41.0"
+    }
+  },
+  "365": {
+    "inputs": {
+      "chunks": 2,
+      "seq_threshold": 4096,
+      "model": [
+        "364",
+        0
+      ]
+    },
+    "class_type": "MiniMaxChunkFeedForward",
+    "_meta": {
+      "title": "MiniMax H3 Chunk FeedForward",
+      "cnr_id": "comfyui-kjnodes",
+      "ver": "d7641533d6634eb05f8570c980fce8fc8528dc7b"
+    }
+  }
+}

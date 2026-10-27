@@ -52,6 +52,7 @@
 - **一张照片做出固定的数字人**：脸、服装、声音描述、提示词模板都存在 `persona.json`，每条片子都是同一个人。想进什么场景（直播间、门店、教室、京都街头），先用 GPT Image 合成开场画面，再让她开口。
 - **对口型的口播片段**：稿子切成 ≤ 15 秒一段，通过 **[Renoise MCP](https://renoise.ai/mcp?utm_medium=xcom&utm_source=official)** 用 **Grok Video 1.5** 生成。也写了 Wan 3.0、OmniHuman（用你自己的录音驱动口型）的用法。
 - **先报价，再花钱**：每次生成前，Agent 先报「段数 · 秒数 · 积分 · 余额」，你点头才开始；先拍第 1 段给你看，满意再批量。
+- **两种生成后端**：云端（**Grok Video 1.5**，走 Renoise MCP，每次先报价）或**本地 ComfyUI + MiniMax H3 Continuum**（免费、不出网、能出长镜：分块续拍，段数/每段时长/分辨率都在采样器节点上设，也可以用自己的 TTS 音频直接驱动口型）。本地那份全流程见 `references/local-h3-continuum.md`。
 - **两道质检**：每段用 whisper 回听、和稿子比对；每段抽 4 帧检查（Grok 偶尔会自己往画面里烧字幕，有就重拍那段）。
 - **声音统一**：1/3 倍频程频谱匹配 + 去齿音 + 同一个小房间混响 + 响度统一，30 段分开生成的口播听起来像一次录完（实测齿音段间差 13.2 dB → 5.9 dB）。
 - **按内容推荐剪辑风格**：Agent 先诊断内容，推荐 2 种风格并附预览图，一次问完（风格 · 比例时长 · 花字强度 · 主播）。
@@ -181,6 +182,31 @@ python3 ~/.claude/skills/digital-human-koubo/scripts/make_assets.py
 
 > 注意：Grok 的口型跟的是它自己生成的声音。事后换成别的声音，口型会差约 100 毫秒（画中画看不出，全屏特写看得出）。想用自己的录音又要口型准，换「音频驱动口型」的模型，比如 OmniHuman（Skill 里有写法）。
 
+### 7 ·（可选）本地后端 —— ComfyUI + MiniMax H3 Continuum
+
+只用 Renoise 的话这步跳过。本地不计费、不出网，适合长镜头一镜到底的口播。
+
+1. 本机跑 ComfyUI，装 `comfyui-h3-continuum` 和 `rgthree-comfy`，自备 MiniMax H3 的视频/音频 VAE、文本编码器和你实际在用的 LoRA。**模型权重不随仓库分发**，自己装、自己遵守许可。
+2. 把脚本指到你的安装位置（换机器只改这几个）：
+
+```bat
+set COMFY_URL=http://127.0.0.1:8188
+set COMFY_INPUT=D:\ComfyUI_windows_portable\ComfyUI\input
+set FFMPEG_DIR=D:\ffmpeg\bin
+set WHISPER_DIR=D:\whisper.cpp
+set WHISPER_MODEL=D:\models\ggml-medium-q5_0.bin
+```
+
+3. 用 **Save (API Format)** 把 Continuum 工作流导出一次，存成 `scripts/local-h3/continuum_base.json`。**不要自己转 UI 版**：rgthree 的 Power Lora Loader 把 LoRA 放在动态输入里，UI→API 转换器会一声不响把它们全丢掉，模型退化成裸模型，出片一律发虚。
+4. 一条命令跑完整条：
+
+```bash
+python pipeline.py --script 剧本.txt --image 形象图.png --prompt-template prompts/tpl.txt \
+  --reference "<参考音频>/某女声.mp3" --auto-prompt --target 30 --out out/final.mp4
+```
+
+细节、实测数字和 14 个坑：`references/local-h3-continuum.md`。
+
 ---
 
 ## 快速开始
@@ -302,6 +328,11 @@ skills/
     references/                   风格菜单 · 包装组件 · 手法库 · 安装 · 拆解报告
     scripts/                      build_tasks · rangedl · assemble · align · check_edit · cutout_video
                                   voicefx/unify · doctor · new_edit · make_assets
+    scripts/local-h3/             本地后端：h3c_run（提交取片）· pipeline（一键）
+                                  tts（VoxCPM2 克隆）· w2api（UI→API）· srtsplit · sharpness
+                                  vram_free · refs_index · continuum_base.json
+    references/local-h3-continuum.md      本地 ComfyUI H3 后端全流程
+    references/official-continuum-skill/  上游 H3 Continuum 提示词规范（MIT，随仓库附带）
     templates/
       huazi-916/                  9:16 数据驱动花字口播模板（edit.json）
       packaging/                  48 个组件 + 图鉴工程
@@ -319,6 +350,9 @@ docs/                             README 用的图片、GIF 预览、封面帧
 - Grok 9:16 720p 是 **720×1280**，别拉成别的比例。
 - expo 缓动到不了终点（99.9 四舍五入成 100）→ 计数动画结束时强制落在精确值。
 - 主播视频轨一定要静音；两条声音差几毫秒叠在一起会刺耳（梳状滤波）。
+- *（本地后端）* 自己把 UI 工作流转成 API，`Power Lora Loader (rgthree)` 上的 **LoRA 会一声不响全丢** → 裸模型 + 少步数，画面必虚。一律用官方「Save (API Format)」导出。
+- *（本地后端）* Continuum 长镜头会漂移（插件已知问题）：每过一段边界曝光抬约 +0.05–0.07、细节递减。共享 preamble 只留不变量，**别堆「锐利 / 毛孔 / 高对比」这类形容词**（越堆越飘）；要根治就每段独立生成再硬切。
+- *（本地后端）* 解码缓存写 `%TEMP%`（一次出片约 8GB，ComfyUI 不重启就不删）→ 在插件设置里把 *Temporary Storage* 指到大盘，并压 `disk_budget_gb`。
 
 ## 使用红线
 
